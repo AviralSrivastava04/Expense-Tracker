@@ -3,12 +3,14 @@ package com.example.UserExpenseTracker.service;
 import com.example.UserExpenseTracker.dto.ExpenseInputDto;
 import com.example.UserExpenseTracker.dto.ExpenseOutputDto;
 import com.example.UserExpenseTracker.entity.Expense;
+import com.example.UserExpenseTracker.enums.PaymentMode;
 import com.example.UserExpenseTracker.repository.ExpenseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,4 +49,43 @@ public class ExpenseService {
         expenseRepo.save(expense);
         return "Expense Added!!!";
     }
+
+    public List<ExpenseOutputDto> getExpenseByPaymentMode(String paymentMode){
+        List<Expense> expenseList = expenseRepo.findByPaymentMode(PaymentMode.valueOf(paymentMode));
+        List<ExpenseOutputDto> expenseOutputDtoList = new ArrayList<>();
+        for(Expense expense : expenseList){
+            ExpenseOutputDto expenseOutputDto = new ExpenseOutputDto();
+            expenseOutputDto.setExpenseName(expense.getExpenseName());
+            expenseOutputDto.setPaymentMode(expense.getPaymentMode());
+            expenseOutputDto.setId(expense.getId());
+            expenseOutputDto.setDate(expense.getDate());
+            expenseOutputDto.setAmount(expense.getAmount());
+
+            expenseOutputDtoList.add(expenseOutputDto);
+        }
+        return expenseOutputDtoList;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

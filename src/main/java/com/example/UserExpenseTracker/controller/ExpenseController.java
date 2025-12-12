@@ -4,6 +4,7 @@ import com.example.UserExpenseTracker.dto.ExpenseInputDto;
 import com.example.UserExpenseTracker.dto.ExpenseOutputDto;
 import com.example.UserExpenseTracker.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,5 +34,10 @@ public class ExpenseController {
     @GetMapping("/totalExpense")
     public ResponseEntity<String> getTotalExpense(){
         return ResponseEntity.ok(expenseService.getTotalAmt());
+    }
+
+    @GetMapping("/paymentMode")
+    public ResponseEntity<List<ExpenseOutputDto>> getExpenseByPaymentMode(@RequestParam String paymentMode){
+        return new ResponseEntity<>(expenseService.getExpenseByPaymentMode(paymentMode), HttpStatusCode.valueOf(200));
     }
 }
