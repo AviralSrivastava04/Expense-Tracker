@@ -40,4 +40,9 @@ public class ExpenseController {
     public ResponseEntity<List<ExpenseOutputDto>> getExpenseByPaymentMode(@RequestParam String paymentMode){
         return new ResponseEntity<>(expenseService.getExpenseByPaymentMode(paymentMode), HttpStatusCode.valueOf(200));
     }
+
+    @GetMapping("/expenseByRange")
+    public  ResponseEntity<List<ExpenseOutputDto>> getExpenseByRange(@RequestParam Double minAmt, Double maxAmt){
+        return ResponseEntity.ok(expenseService.getByAmtRange(minAmt,maxAmt));
+    }
 }

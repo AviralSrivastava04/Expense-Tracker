@@ -65,6 +65,23 @@ public class ExpenseService {
         }
         return expenseOutputDtoList;
     }
+
+    public List<ExpenseOutputDto> getByAmtRange(Double minAmt, Double maxAmt) {
+        List<Expense> expenseList = expenseRepo.findByAmountBetween(minAmt, maxAmt);
+        List<ExpenseOutputDto> expenseOutputDtoList = new ArrayList<>();
+        for(Expense expense : expenseList){
+            ExpenseOutputDto expenseOutputDto = new ExpenseOutputDto();
+            expenseOutputDto.setExpenseName(expense.getExpenseName());
+            expenseOutputDto.setId(expense.getId());
+            expenseOutputDto.setPaymentMode(expense.getPaymentMode());
+            expenseOutputDto.setDate(expense.getDate());
+            expenseOutputDto.setAmount(expense.getAmount());
+
+            expenseOutputDtoList.add(expenseOutputDto);
+        }
+
+        return expenseOutputDtoList;
+    }
 }
 
 
