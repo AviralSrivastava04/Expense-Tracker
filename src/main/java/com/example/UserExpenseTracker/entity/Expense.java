@@ -26,4 +26,8 @@ public class Expense {
 
     @Column(nullable = false)
     private Double amount;
+
+
+    @ManyToOne
+    private User user;
 }
