@@ -27,7 +27,7 @@ public class Expense {
     @Column(nullable = false)
     private Double amount;
 
-
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_expense")
     private User user;
 }

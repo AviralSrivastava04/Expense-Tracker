@@ -2,6 +2,7 @@ package com.example.UserExpenseTracker.controller;
 
 import com.example.UserExpenseTracker.dto.ExpenseInputDto;
 import com.example.UserExpenseTracker.dto.ExpenseOutputDto;
+import com.example.UserExpenseTracker.dto.UserInputDto;
 import com.example.UserExpenseTracker.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;

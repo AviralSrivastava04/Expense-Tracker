@@ -2,7 +2,9 @@ package com.example.UserExpenseTracker.service;
 
 import com.example.UserExpenseTracker.dto.ExpenseInputDto;
 import com.example.UserExpenseTracker.dto.ExpenseOutputDto;
+import com.example.UserExpenseTracker.dto.UserInputDto;
 import com.example.UserExpenseTracker.entity.Expense;
+import com.example.UserExpenseTracker.entity.User;
 import com.example.UserExpenseTracker.enums.PaymentMode;
 import com.example.UserExpenseTracker.repository.ExpenseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,7 @@ public class ExpenseService {
 
     public String addExpense(ExpenseInputDto expenseInputDto){
         Expense expense = new Expense();
+        expense.setUser(new User(expenseInputDto.getUsername(), expenseInputDto.getMobile()));
         expense.setExpenseName(expenseInputDto.getExpenseName());
         expense.setDate(LocalDate.now());
         expense.setAmount(expenseInputDto.getAmount());
