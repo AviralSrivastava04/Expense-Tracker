@@ -17,10 +17,10 @@ public class ExpenseController {
     @Autowired
     private ExpenseService expenseService;
 
-    @GetMapping("/getExpense")
-    public ResponseEntity<List<ExpenseOutputDto>> getExpense(){
-        return ResponseEntity.ok(expenseService.getExpense());
-    }
+//    @GetMapping("/getExpense")
+//    public ResponseEntity<List<ExpenseOutputDto>> getExpense(){
+//        return ResponseEntity.ok(expenseService.getExpense());
+//    }
 
     @GetMapping("/getExpense/{id}")
     public ResponseEntity<ExpenseOutputDto> getExpenseById(@PathVariable Long id){
